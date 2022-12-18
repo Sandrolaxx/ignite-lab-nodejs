@@ -1,8 +1,9 @@
-export class Notificaion {
+import { ContentVO } from "./contentVO";
 
+export class Notification {
     private recipientId: string;
 
-    private content: string;
+    private content: ContentVO;
 
     private category: string;
 
@@ -10,9 +11,12 @@ export class Notificaion {
 
     private readAt?: Date | null;
 
-    constructor(content: string, category: string) {
+    constructor(recipientId: string, content: ContentVO, category: string, createdAt?: Date, readAt?: Date | null) {
+        this.recipientId = recipientId;
         this.content = content;
         this.category = category;
+        this.createdAt = createdAt ?? new Date();
+        this.readAt = readAt;
     }
 
     public getRecipientId() {
@@ -27,7 +31,7 @@ export class Notificaion {
         return this.content;
     }
 
-    public setContent(content: string) {
+    public setContent(content: ContentVO) {
         this.content = content;
     }
 
