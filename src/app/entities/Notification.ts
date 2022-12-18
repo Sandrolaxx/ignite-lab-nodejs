@@ -1,4 +1,4 @@
-import { ContentVO } from "./contentVO";
+import { ContentVO } from "./ContentVO";
 
 export class Notification {
     private recipientId: string;

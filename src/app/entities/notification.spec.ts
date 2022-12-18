@@ -1,6 +1,6 @@
-import { Notification } from "./notification";
+import { Notification } from "./Notification";
 import { randomUUID } from "node:crypto";
-import { ContentVO } from "./contentVO";
+import { ContentVO } from "./ContentVO";
 
 describe("Notification:", () => {
     test("Deve ser possível criar uma notificação", () => {

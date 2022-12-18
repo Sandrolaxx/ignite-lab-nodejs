@@ -1,4 +1,4 @@
-import { ContentVO } from "./contentVO";
+import { ContentVO } from "./ContentVO";
 
 describe("Notification Content:", () => {
     test("Deve ser possível criar o conteúdo de uma notificação", () => {
