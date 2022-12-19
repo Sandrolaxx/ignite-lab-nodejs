@@ -1,6 +1,9 @@
 import { ContentVO } from "./ContentVO";
+import { randomUUID } from "node:crypto";
 
 export class Notification {
+    private id: string;
+
     private recipientId: string;
 
     private content: ContentVO;
@@ -12,11 +15,16 @@ export class Notification {
     private readAt?: Date | null;
 
     constructor(recipientId: string, content: ContentVO, category: string, createdAt?: Date, readAt?: Date | null) {
+        this.id = randomUUID();
         this.recipientId = recipientId;
         this.content = content;
         this.category = category;
         this.createdAt = createdAt ?? new Date();
         this.readAt = readAt;
+    }
+
+    public getId() {
+        return this.id;
     }
 
     public getRecipientId() {
