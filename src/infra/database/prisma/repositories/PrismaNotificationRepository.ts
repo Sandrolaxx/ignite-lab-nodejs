@@ -24,7 +24,12 @@ export class PrismaNotificationRepository implements NotificationRepository {
         return notification;
     }
 
-    merge(notification: Notification): Promise<void> {
-        throw new Error("Method not implemented.");
+    async merge(notification: Notification): Promise<void> {
+        await this.prismaService.notification.update({
+            where: {
+                id: notification.getId()
+            },
+            data: PrismaNotificationMapper.toPrisma(notification)
+        });
     }
 }
