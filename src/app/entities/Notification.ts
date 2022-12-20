@@ -14,6 +14,8 @@ export class Notification {
 
     private readAt?: Date | null;
 
+    private canceledAt?: Date | null;
+
     constructor(recipientId: string, content: ContentVO, category: string, createdAt?: Date, readAt?: Date | null) {
         this.id = randomUUID();
         this.recipientId = recipientId;
@@ -21,6 +23,10 @@ export class Notification {
         this.category = category;
         this.createdAt = createdAt ?? new Date();
         this.readAt = readAt;
+    }
+
+    public cancel() {
+        this.canceledAt = new Date();
     }
 
     public getId() {
@@ -62,4 +68,9 @@ export class Notification {
     public setReadAt(readAt: Date | null | undefined) {
         this.readAt = readAt;
     }
+
+    public getCanceledAt() {
+        return this.canceledAt;
+    }
+
 }

@@ -9,3 +9,7 @@ export interface ISendNotification {
 export interface ISendNotificationResponse {
     notification: Notification;
 }
+
+export interface ICancelNotification {
+    notificationId: string;
+}

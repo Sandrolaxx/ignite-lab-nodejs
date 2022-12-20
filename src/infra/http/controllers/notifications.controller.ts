@@ -1,10 +1,13 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { CancelNotification } from "@app/use-cases/CancelNotification";
 import { SendNotification } from "@app/use-cases/SendNotification";
+import { Body, Controller, Headers, Patch, Post } from "@nestjs/common";
 import { CreateNotificationBodyDto } from "../dto/CreateNotificationBodyDto";
+import { NotificationHttpMapper } from "../mappers/NotificationHttpMapper";
 
 @Controller("notifications")
 export class NotificationsController {
     constructor(private sendNotification: SendNotification) {}
+    // constructor(private cancelNotification: CancelNotification) {}
 
     @Post()
     async create(@Body() body: CreateNotificationBodyDto) {
@@ -14,6 +17,11 @@ export class NotificationsController {
             recipientId: body.recipientId,
         });
 
-        return notification;
+        return NotificationHttpMapper.toHttp(notification);
+    }
+
+    @Patch()
+    async cancel(@Headers() notificationId: string) {
+        // await this.cancelNotification.execute({notificationId});
     }
 }

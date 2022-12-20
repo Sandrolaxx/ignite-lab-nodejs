@@ -81,3 +81,6 @@ Um delas é que um VO pode ser usado para agrupar informações relacionadas em 
 Para mais informações sobre 👉[VO's](https://robsoncastilho.com.br/2013/11/10/trabalhando-com-value-objects/)
 
 * Inversão de dependência utilizada no arquivo SendNotification.ts, onde fui criada uma classe abstrata(um contrato) onde diz qual a funcionalidade do caso de uso, não como implementá-la, quem for chamar o use-case é que vai passar qual vai ser a implementação via parâmetro, assim invertendo as dependências, também outro beneficio é o desacoplamento.
+
+* **Mapper** é algo utilizado para transformar o objeto utilizado para a comunicação externa no objeto de domínio e assim vice-versa, serve para poder parsar os objetos entre as camadas da aplicação.
+
