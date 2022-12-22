@@ -21,7 +21,11 @@ export class PrismaNotificationRepository implements NotificationRepository {
             }
         });
 
-        return notification;
+        if (notification == null) {//TO-DO
+            return null;
+        }
+
+        return null;
     }
 
     async merge(notification: Notification): Promise<void> {
