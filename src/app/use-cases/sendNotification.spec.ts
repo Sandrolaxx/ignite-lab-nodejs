@@ -8,7 +8,7 @@ describe("Send Notification", () => {
 
         const { notification } = await sendNotification.execute({
             recipientId: "exemple-recepient-id",
-            content: "Apenas uma teste",
+            content: "Apenas um teste",
             category: "social"
         })
 

@@ -1,5 +1,4 @@
-import { ContentVO } from "@app/entities/ContentVO";
-import { Notification } from "@app/entities/Notification";
+import { makeNotification } from "@test/factories/notificationFactory";
 import { InMemoryNotificationRepository } from "@test/repositories/InMemoryNotificationRepository";
 import { CancelNotification } from "./CancelNotification";
 import { NotificationNotFound } from "./errors/NotificationNotFound";
@@ -9,7 +8,7 @@ describe("Cancel Notification", () => {
         const notificationsRepository = new InMemoryNotificationRepository();
         const cancelNotification = new CancelNotification(notificationsRepository);
 
-        const notification = new Notification("exemple-recepient-id", new ContentVO("Apenas uma teste"), "social");
+        const notification = makeNotification();
 
         await notificationsRepository.create(notification);
 

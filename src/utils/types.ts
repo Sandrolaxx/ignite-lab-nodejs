@@ -1,4 +1,14 @@
+import { ContentVO } from "@app/entities/ContentVO";
 import { Notification } from "src/app/entities/Notification";
+
+export interface IOverrideNotification {
+    recipientId: string;
+    content: ContentVO;
+    category: string;
+    createdAt: Date;
+    readAt?: Date | null;
+    canceledAt?: Date | null;
+}
 
 export interface ISendNotification {
     recipientId: string;
@@ -12,4 +22,20 @@ export interface ISendNotificationResponse {
 
 export interface ICancelNotification {
     notificationId: string;
+}
+
+export interface ICountRecipientNotificationsResponse {
+    count: number;
+}
+
+export interface ICountRecipientNotifications {
+    recipientId: string;
+}
+
+export interface IGetRecipientNotificationsResponse {
+    notifications: Notification[];
+}
+
+export interface IGetRecipientNotifications {
+    recipientId: string;
 }
