@@ -39,3 +39,11 @@ export interface IGetRecipientNotificationsResponse {
 export interface IGetRecipientNotifications {
     recipientId: string;
 }
+
+export interface IReadNotification {
+    notificationId: string;
+}
+
+export interface IUnReadNotification {
+    notificationId: string;
+}

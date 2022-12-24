@@ -1,5 +1,5 @@
-import { ContentVO } from "./ContentVO";
 import { randomUUID } from "node:crypto";
+import { ContentVO } from "./ContentVO";
 
 export class Notification {
     private id: string;
@@ -27,6 +27,14 @@ export class Notification {
 
     public cancel() {
         this.canceledAt = new Date();
+    }
+
+    public read() {
+        this.readAt = new Date();
+    }
+
+    public unread() {
+        this.readAt = null;
     }
 
     public getId() {
@@ -63,10 +71,6 @@ export class Notification {
 
     public getReadAt(): Date | null | undefined {
         return this.readAt;
-    }
-
-    public setReadAt(readAt: Date | null | undefined) {
-        this.readAt = readAt;
     }
 
     public getCanceledAt() {
