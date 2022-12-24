@@ -7,7 +7,9 @@ export class NotificationHttpMapper {
             recipientId: notification.getRecipientId(),
             content: notification.getContent().getValue(),
             category: notification.getCategory(),
-            createdAt: notification.getCreatedAt()
+            createdAt: notification.getCreatedAt(),
+            readAt: notification.getReadAt() ?? null,
+            canceledAt: notification.getCanceledAt() ?? null,
          }
     }
 }

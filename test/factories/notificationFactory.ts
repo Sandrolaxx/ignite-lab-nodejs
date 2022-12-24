@@ -8,6 +8,8 @@ export function makeNotification(override: Partial<IOverrideNotification> = {}) 
         override.content ?? new ContentVO("Apenas um teste 1"),
         override.category ?? "social",
         override.createdAt,
-        override.readAt
+        override.readAt,
+        override.canceledAt,
+        override.id
     );
 }

@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
 import { Notification } from "@app/entities/Notification";
+import { Injectable } from "@nestjs/common";
 import { NotificationRepository } from "src/app/repositories/NotificationRepository";
-import { PrismaService } from "../prisma.service";
 import { PrismaNotificationMapper } from "../mappers/PrismaNotificationMapper";
+import { PrismaService } from "../prisma.service";
 
 @Injectable()
 export class PrismaNotificationRepository implements NotificationRepository {
@@ -14,26 +14,44 @@ export class PrismaNotificationRepository implements NotificationRepository {
         });
     }
 
-    async findById(notificationId: string): Promise<Notification | null> {
-        const notification = await this.prismaService.notification.findFirst({
-            where: {
-                id: notificationId,
-            }
-        });
-
-        if (notification == null) {//TO-DO
-            return null;
-        }
-
-        return null;
-    }
-
     async merge(notification: Notification): Promise<void> {
         await this.prismaService.notification.update({
             where: {
-                id: notification.getId()
+                id: notification.getId(),
             },
-            data: PrismaNotificationMapper.toPrisma(notification)
+            data: PrismaNotificationMapper.toPrisma(notification),
         });
+    }
+
+    async findById(notificationId: string): Promise<Notification | null> {
+        const notification = await this.prismaService.notification.findUnique({
+            where: {
+                id: notificationId,
+            },
+        });
+
+        if (notification == null) {
+            return null;
+        }
+
+        return PrismaNotificationMapper.toDomain(notification);
+    }
+
+    async countByRecipientId(recipientId: string): Promise<number> {
+        return this.prismaService.notification.count({
+            where: {
+                recipientId,
+            },
+        });
+    }
+
+    async getRecipientNotificationsByRecipientId(recipientId: string): Promise<Notification[]> {
+        const notifications = await this.prismaService.notification.findMany({
+            where: {
+                recipientId,
+            },
+        });
+
+        return notifications.map(PrismaNotificationMapper.toDomain);
     }
 }

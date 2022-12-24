@@ -8,6 +8,7 @@ export interface IOverrideNotification {
     createdAt: Date;
     readAt?: Date | null;
     canceledAt?: Date | null;
+    id?: string;
 }
 
 export interface ISendNotification {
