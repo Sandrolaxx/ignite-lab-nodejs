@@ -8,10 +8,7 @@ export class KafkaConsumerService extends ServerKafka implements OnModuleDestroy
             client: {
                 clientId: "notitication-service",
                 brokers: ["localhost:9092"],
-            },
-            consumer: {
-                groupId: "services",
-            },
+            }
         });
     }
 
