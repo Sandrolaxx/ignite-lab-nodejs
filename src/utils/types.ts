@@ -48,3 +48,9 @@ export interface IReadNotification {
 export interface IUnReadNotification {
     notificationId: string;
 }
+
+export interface INotificationEvent {
+    content: string;
+    category: string;
+    recipientId: string;
+}
