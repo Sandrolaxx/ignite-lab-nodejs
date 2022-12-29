@@ -92,9 +92,9 @@ Por conta da arquitetura possibilitar um nível alto de desacoplamento, podemos,
 
 ---
 
-### Microservicos com Nest e Kafka
+### Microservices com Nest e Kafka
 
-Para criar microservices com Nest é necessário realizar a adição de um pacote o "@nestjs/microservices", após adicionado é necessário fazer algumas configurações, mas nada muito complexo. Neste Lab foi realizada a comunicação entre dois microservicos utilizando o broker Kafka, subi uma instancia dele com docker, abaixo os comandos para subir o container do Kafka, zookeper(dependencia do Kafka) e do Kafdrop que é a interface para poder visualizar os dados do Kafka.
+Para criar microserviços com Nest é necessário realizar a adição de um pacote o "@nestjs/microservices", após adicionado é necessário fazer algumas configurações, mas nada muito complexo. Neste Lab foi realizada a comunicação entre dois microservicos utilizando o broker Kafka, subi uma instancia dele com docker, abaixo os comandos para subir o container do Kafka, zookeper(dependencia do Kafka) e do Kafdrop que é a interface para poder visualizar os dados do Kafka.
 
 Comando docker:
 ```
