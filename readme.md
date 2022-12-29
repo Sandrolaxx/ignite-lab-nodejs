@@ -84,3 +84,38 @@ Para mais informações sobre 👉[VO's](https://robsoncastilho.com.br/2013/11/1
 
 * **Mapper** é algo utilizado para transformar o objeto utilizado para a comunicação externa no objeto de domínio e assim vice-versa, serve para poder parsar os objetos entre as camadas da aplicação.
 
+---
+
+### Testes
+
+Por conta da arquitetura possibilitar um nível alto de desacoplamento, podemos, por exemplo, fazer todos os testes do nosso repository, que faz a interação com base dados, sem nenhuma interação com uma base de dados real, podemos criar um banco em memória e implementar a interface do repository nele. Também propicia uma melhora dos testes em todas as camadas, porque assim que criamos nossas entidades no domínio, já podemos sair testando elas e assim de forma subsequente.
+
+---
+
+### Microservicos com Nest e Kafka
+
+Para criar microservices com Nest é necessário realizar a adição de um pacote o "@nestjs/microservices", após adicionado é necessário fazer algumas configurações, mas nada muito complexo. Neste Lab foi realizada a comunicação entre dois microservicos utilizando o broker Kafka, subi uma instancia dele com docker, abaixo os comandos para subir o container do Kafka, zookeper(dependencia do Kafka) e do Kafdrop que é a interface para poder visualizar os dados do Kafka.
+
+Comando docker:
+```
+docker run -d --name zookeeper-server \
+    --network host \
+    -e ALLOW_ANONYMOUS_LOGIN=yes \
+    bitnami/zookeeper:latest
+
+docker run -d --name kafka-server \
+    --network host \
+    --hostname kafka-internal.io \
+    -e ALLOW_PLAINTEXT_LISTENER=yes \
+    -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 \
+    bitnami/kafka:latest
+
+docker run -d --name sandrolax-kadfdrop -p 9000:9000 \
+    --network host \
+    -e KAFKA_BROKERCONNECT=localhost:9092 \
+    -e JVM_OPTS="-Xms32M -Xmx64M" \
+    -e SERVER_SERVLET_CONTEXTPATH="/" \
+    obsidiandynamics/kafdrop:latest
+```
+
+Na pasta do projeto "producer-service-example" existe uma pequena aplicação com a extensão "kafkajs" necessária para realizar as comunicações com Kafka, que é uma aplicação "producer" que coloca uma mensagem no tópico de "Notifications" consumida pela aplicação principal desse repositório, assim fazendo uma comunicação simples entre microserviços utilizando o Kafka.
